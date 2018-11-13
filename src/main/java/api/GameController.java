@@ -20,7 +20,7 @@ public class GameController {
 	private final AtomicInteger counter = new AtomicInteger();
 	private Repository repository = new Repository();
 
-	@RequestMapping(value = "/game/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/games/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getGame(@PathVariable("id") int id) {
 		Game game = this.repository.getGameById(id);
 		if (game == null) {
@@ -60,7 +60,7 @@ public class GameController {
 			return new ResponseEntity("Unable to delete. Game with id " + id + " not found.", HttpStatus.NOT_FOUND);
 		}
 		this.repository.deleteGameById(id);
-		return new ResponseEntity<Game>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Game>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/game", method = RequestMethod.DELETE)
